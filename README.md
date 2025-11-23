@@ -18,6 +18,7 @@ npm install string-master-utils
 ```
 
 ## Usage
+
 ### TypeScript/ES Modules
 
 ```typescript
@@ -26,14 +27,14 @@ import {
   toSnakeCase,
   removeSpaces,
   countWords,
-  generateSlug
-} from 'string-master-utils';
+  generateSlug,
+} from "string-master-utils";
 
 // Use the functions
-const result = toCamelCase('hello world'); // 'helloWorld'
+const result = toCamelCase("hello world"); // 'helloWorld'
 ```
 
-## API Reference
+## Reference
 
 ### Case Conversions
 
@@ -42,10 +43,10 @@ const result = toCamelCase('hello world'); // 'helloWorld'
 Converts a string to camelCase.
 
 ```javascript
-toCamelCase('hello world')      // 'helloWorld'
-toCamelCase('hello-world')      // 'helloWorld'
-toCamelCase('Hello World')      // 'helloWorld'
-toCamelCase('hello_world_test') // 'helloWorldTest'
+toCamelCase("hello world"); // 'helloWorld'
+toCamelCase("hello-world"); // 'helloWorld'
+toCamelCase("Hello World"); // 'helloWorld'
+toCamelCase("hello_world_test"); // 'helloWorldTest'
 ```
 
 #### `toSnakeCase(str)`
@@ -53,10 +54,10 @@ toCamelCase('hello_world_test') // 'helloWorldTest'
 Converts a string to snake_case.
 
 ```javascript
-toSnakeCase('hello world')      // 'hello_world'
-toSnakeCase('HelloWorld')       // 'hello_world'
-toSnakeCase('hello-world')      // 'hello_world'
-toSnakeCase('Hello World Test') // 'hello_world_test'
+toSnakeCase("hello world"); // 'hello_world'
+toSnakeCase("HelloWorld"); // 'hello_world'
+toSnakeCase("hello-world"); // 'hello_world'
+toSnakeCase("Hello World Test"); // 'hello_world_test'
 ```
 
 #### `toKebabCase(str)`
@@ -64,10 +65,10 @@ toSnakeCase('Hello World Test') // 'hello_world_test'
 Converts a string to kebab-case.
 
 ```javascript
-toKebabCase('hello world')      // 'hello-world'
-toKebabCase('HelloWorld')       // 'hello-world'
-toKebabCase('hello_world')      // 'hello-world'
-toKebabCase('Hello World Test') // 'hello-world-test'
+toKebabCase("hello world"); // 'hello-world'
+toKebabCase("HelloWorld"); // 'hello-world'
+toKebabCase("hello_world"); // 'hello-world'
+toKebabCase("Hello World Test"); // 'hello-world-test'
 ```
 
 #### `toPascalCase(str)`
@@ -75,10 +76,10 @@ toKebabCase('Hello World Test') // 'hello-world-test'
 Converts a string to PascalCase.
 
 ```javascript
-toPascalCase('hello world')      // 'HelloWorld'
-toPascalCase('hello-world')      // 'HelloWorld'
-toPascalCase('hello_world')      // 'HelloWorld'
-toPascalCase('hello world test') // 'HelloWorldTest'
+toPascalCase("hello world"); // 'HelloWorld'
+toPascalCase("hello-world"); // 'HelloWorld'
+toPascalCase("hello_world"); // 'HelloWorld'
+toPascalCase("hello world test"); // 'HelloWorldTest'
 ```
 
 #### `toTitleCase(str)`
@@ -86,10 +87,10 @@ toPascalCase('hello world test') // 'HelloWorldTest'
 Converts a string to Title Case (capitalizes first letter of each word).
 
 ```javascript
-toTitleCase('hello world')       // 'Hello World'
-toTitleCase('hello-world')       // 'Hello-World'
-toTitleCase('HELLO WORLD')       // 'Hello World'
-toTitleCase('hello world test')  // 'Hello World Test'
+toTitleCase("hello world"); // 'Hello World'
+toTitleCase("hello-world"); // 'Hello-World'
+toTitleCase("HELLO WORLD"); // 'Hello World'
+toTitleCase("hello world test"); // 'Hello World Test'
 ```
 
 #### `toConstantCase(str)`
@@ -97,10 +98,10 @@ toTitleCase('hello world test')  // 'Hello World Test'
 Converts a string to CONSTANT_CASE (UPPER_SNAKE_CASE).
 
 ```javascript
-toConstantCase('hello world')      // 'HELLO_WORLD'
-toConstantCase('HelloWorld')       // 'HELLO_WORLD'
-toConstantCase('hello-world')      // 'HELLO_WORLD'
-toConstantCase('hello world test') // 'HELLO_WORLD_TEST'
+toConstantCase("hello world"); // 'HELLO_WORLD'
+toConstantCase("HelloWorld"); // 'HELLO_WORLD'
+toConstantCase("hello-world"); // 'HELLO_WORLD'
+toConstantCase("hello world test"); // 'HELLO_WORLD_TEST'
 ```
 
 #### `toDotCase(str)`
@@ -108,10 +109,10 @@ toConstantCase('hello world test') // 'HELLO_WORLD_TEST'
 Converts a string to dot.case.
 
 ```javascript
-toDotCase('hello world')      // 'hello.world'
-toDotCase('HelloWorld')       // 'hello.world'
-toDotCase('hello-world')      // 'hello.world'
-toDotCase('hello world test') // 'hello.world.test'
+toDotCase("hello world"); // 'hello.world'
+toDotCase("HelloWorld"); // 'hello.world'
+toDotCase("hello-world"); // 'hello.world'
+toDotCase("hello world test"); // 'hello.world.test'
 ```
 
 ### Word & Character Cleaning
@@ -121,9 +122,9 @@ toDotCase('hello world test') // 'hello.world.test'
 Removes all spaces from a string.
 
 ```javascript
-removeSpaces('hello world')        // 'helloworld'
-removeSpaces('  test  string  ')   // 'teststring'
-removeSpaces('hello   world   test') // 'helloworldtest'
+removeSpaces("hello world"); // 'helloworld'
+removeSpaces("  test  string  "); // 'teststring'
+removeSpaces("hello   world   test"); // 'helloworldtest'
 ```
 
 #### `removeExtraSpaces(str)`
@@ -131,9 +132,9 @@ removeSpaces('hello   world   test') // 'helloworldtest'
 Removes extra spaces, keeping only single spaces between words.
 
 ```javascript
-removeExtraSpaces('hello    world')     // 'hello world'
-removeExtraSpaces('  test   string  ')  // 'test string'
-removeExtraSpaces('hello   world   test') // 'hello world test'
+removeExtraSpaces("hello    world"); // 'hello world'
+removeExtraSpaces("  test   string  "); // 'test string'
+removeExtraSpaces("hello   world   test"); // 'hello world test'
 ```
 
 #### `removeSpecialChars(str)`
@@ -141,9 +142,9 @@ removeExtraSpaces('hello   world   test') // 'hello world test'
 Removes all special characters from a string, keeping only alphanumeric characters and spaces.
 
 ```javascript
-removeSpecialChars('hello@world#123!')  // 'helloworld123'
-removeSpecialChars('test-string_123')  // 'teststring123'
-removeSpecialChars('price: $99.99')    // 'price 9999'
+removeSpecialChars("hello@world#123!"); // 'helloworld123'
+removeSpecialChars("test-string_123"); // 'teststring123'
+removeSpecialChars("price: $99.99"); // 'price 9999'
 ```
 
 #### `removeNumbers(str)`
@@ -151,9 +152,9 @@ removeSpecialChars('price: $99.99')    // 'price 9999'
 Removes all numbers from a string.
 
 ```javascript
-removeNumbers('hello123world456')  // 'helloworld'
-removeNumbers('test123')           // 'test'
-removeNumbers('abc123def456ghi')   // 'abcdefghi'
+removeNumbers("hello123world456"); // 'helloworld'
+removeNumbers("test123"); // 'test'
+removeNumbers("abc123def456ghi"); // 'abcdefghi'
 ```
 
 #### `keepOnlyNumbers(str)`
@@ -161,9 +162,9 @@ removeNumbers('abc123def456ghi')   // 'abcdefghi'
 Keeps only numbers from a string, removing all other characters.
 
 ```javascript
-keepOnlyNumbers('hello123world456')  // '123456'
-keepOnlyNumbers('price: $99.99')     // '9999'
-keepOnlyNumbers('phone: (555) 123-4567') // '5551234567'
+keepOnlyNumbers("hello123world456"); // '123456'
+keepOnlyNumbers("price: $99.99"); // '9999'
+keepOnlyNumbers("phone: (555) 123-4567"); // '5551234567'
 ```
 
 #### `trimAll(str)`
@@ -171,9 +172,9 @@ keepOnlyNumbers('phone: (555) 123-4567') // '5551234567'
 Trims whitespace from the beginning and end of a string, and removes all internal whitespace.
 
 ```javascript
-trimAll('  hello world  ')      // 'helloworld'
-trimAll('  test   string  ')    // 'teststring'
-trimAll('  hello   world   test  ') // 'helloworldtest'
+trimAll("  hello world  "); // 'helloworld'
+trimAll("  test   string  "); // 'teststring'
+trimAll("  hello   world   test  "); // 'helloworldtest'
 ```
 
 #### `truncate(str, limit, suffix?)`
@@ -181,11 +182,11 @@ trimAll('  hello   world   test  ') // 'helloworldtest'
 Truncates a string to a specified length, optionally adding an ellipsis.
 
 ```javascript
-truncate('hello world', 5)           // 'hello...'
-truncate('hello world', 11)          // 'hello world'
-truncate('test', 10)                 // 'test'
-truncate('long string here', 8, '...') // 'long st...'
-truncate('short', 10, '...')         // 'short'
+truncate("hello world", 5); // 'hello...'
+truncate("hello world", 11); // 'hello world'
+truncate("test", 10); // 'test'
+truncate("long string here", 8, "..."); // 'long st...'
+truncate("short", 10, "..."); // 'short'
 ```
 
 ### String Info
@@ -195,10 +196,10 @@ truncate('short', 10, '...')         // 'short'
 Counts the number of words in a string.
 
 ```javascript
-countWords('hello world')           // 2
-countWords('hello   world   test')  // 3
-countWords('')                      // 0
-countWords('  single  ')            // 1
+countWords("hello world"); // 2
+countWords("hello   world   test"); // 3
+countWords(""); // 0
+countWords("  single  "); // 1
 ```
 
 #### `countChars(str, excludeWhitespace?)`
@@ -206,10 +207,10 @@ countWords('  single  ')            // 1
 Counts the number of characters in a string (excluding whitespace if specified).
 
 ```javascript
-countChars('hello world')           // 11
-countChars('hello world', true)     // 10
-countChars('test')                  // 4
-countChars('  test  ', true)        // 4
+countChars("hello world"); // 11
+countChars("hello world", true); // 10
+countChars("test"); // 4
+countChars("  test  ", true); // 4
 ```
 
 #### `reverseString(str)`
@@ -217,9 +218,9 @@ countChars('  test  ', true)        // 4
 Reverses a string.
 
 ```javascript
-reverseString('hello')    // 'olleh'
-reverseString('world')    // 'dlrow'
-reverseString('test 123') // '321 tset'
+reverseString("hello"); // 'olleh'
+reverseString("world"); // 'dlrow'
+reverseString("test 123"); // '321 tset'
 ```
 
 #### `isEmpty(str)`
@@ -227,11 +228,11 @@ reverseString('test 123') // '321 tset'
 Checks if a string is empty (has no characters).
 
 ```javascript
-isEmpty('')        // true
-isEmpty('   ')     // false (contains whitespace)
-isEmpty('hello')   // false
-isEmpty(null)      // true
-isEmpty(undefined) // true
+isEmpty(""); // true
+isEmpty("   "); // false (contains whitespace)
+isEmpty("hello"); // false
+isEmpty(null); // true
+isEmpty(undefined); // true
 ```
 
 #### `isBlank(str)`
@@ -239,12 +240,12 @@ isEmpty(undefined) // true
 Checks if a string is blank (empty or contains only whitespace).
 
 ```javascript
-isBlank('')        // true
-isBlank('   ')     // true
-isBlank('\t\n')    // true
-isBlank('hello')   // false
-isBlank(null)      // true
-isBlank(undefined) // true
+isBlank(""); // true
+isBlank("   "); // true
+isBlank("\t\n"); // true
+isBlank("hello"); // false
+isBlank(null); // true
+isBlank(undefined); // true
 ```
 
 ### Advanced
@@ -254,10 +255,10 @@ isBlank(undefined) // true
 Generates a random string of specified length.
 
 ```javascript
-randomString(10)                              // 'aB3dEfG9hI' (random)
-randomString(5, '0123456789')                // '38472' (random)
-randomString(8, 'abc')                       // 'abcabcaa' (random)
-randomString(6, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ') // 'XYZABC' (random)
+randomString(10); // 'aB3dEfG9hI' (random)
+randomString(5, "0123456789"); // '38472' (random)
+randomString(8, "abc"); // 'abcabcaa' (random)
+randomString(6, "ABCDEFGHIJKLMNOPQRSTUVWXYZ"); // 'XYZABC' (random)
 ```
 
 #### `generateSlug(str)`
@@ -265,11 +266,11 @@ randomString(6, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ') // 'XYZABC' (random)
 Generates a URL-friendly slug from a string.
 
 ```javascript
-generateSlug('Hello World!')              // 'hello-world'
-generateSlug('This is a Test String')     // 'this-is-a-test-string'
-generateSlug('JavaScript & TypeScript')    // 'javascript-typescript'
-generateSlug('  Multiple   Spaces  ')     // 'multiple-spaces'
-generateSlug('Special@Chars#Here!')        // 'specialcharshere'
+generateSlug("Hello World!"); // 'hello-world'
+generateSlug("This is a Test String"); // 'this-is-a-test-string'
+generateSlug("JavaScript & TypeScript"); // 'javascript-typescript'
+generateSlug("  Multiple   Spaces  "); // 'multiple-spaces'
+generateSlug("Special@Chars#Here!"); // 'specialcharshere'
 ```
 
 #### `compareStrings(a, b, caseSensitive?)`
@@ -277,11 +278,11 @@ generateSlug('Special@Chars#Here!')        // 'specialcharshere'
 Compares two strings and returns a comparison result.
 
 ```javascript
-compareStrings('apple', 'banana')          // -1 (a < b)
-compareStrings('banana', 'apple')          // 1 (a > b)
-compareStrings('hello', 'hello')           // 0 (a === b)
-compareStrings('Hello', 'hello', true)      // 1 (case-sensitive)
-compareStrings('Hello', 'hello', false)    // 0 (case-insensitive)
+compareStrings("apple", "banana"); // -1 (a < b)
+compareStrings("banana", "apple"); // 1 (a > b)
+compareStrings("hello", "hello"); // 0 (a === b)
+compareStrings("Hello", "hello", true); // 1 (case-sensitive)
+compareStrings("Hello", "hello", false); // 0 (case-insensitive)
 ```
 
 #### `normalizeUnicode(str)`
@@ -289,11 +290,11 @@ compareStrings('Hello', 'hello', false)    // 0 (case-insensitive)
 Normalizes Unicode characters in a string (e.g., removes diacritics).
 
 ```javascript
-normalizeUnicode('café')      // 'cafe'
-normalizeUnicode('naïve')     // 'naive'
-normalizeUnicode('résumé')    // 'resume'
-normalizeUnicode('Zürich')    // 'Zurich'
-normalizeUnicode('São Paulo') // 'Sao Paulo'
+normalizeUnicode("café"); // 'cafe'
+normalizeUnicode("naïve"); // 'naive'
+normalizeUnicode("résumé"); // 'resume'
+normalizeUnicode("Zürich"); // 'Zurich'
+normalizeUnicode("São Paulo"); // 'Sao Paulo'
 ```
 
 ## Complete Example
@@ -301,35 +302,42 @@ normalizeUnicode('São Paulo') // 'Sao Paulo'
 ### JavaScript
 
 ```javascript
-const strUtils = require('string-master-utils');
+const strUtils = require("string-master-utils");
 ```
 
 ### TypeScript
 
 ```typescript
-import * as strUtils from 'string-master-utils';
+import * as strUtils from "string-master-utils";
 ```
 
+```
 // Case conversions
-const camel = strUtils.toCamelCase('hello world');        // 'helloWorld'
-const snake = strUtils.toSnakeCase('Hello World');        // 'hello_world'
-const kebab = strUtils.toKebabCase('Hello World');        // 'hello-world'
-const pascal = strUtils.toPascalCase('hello world');      // 'HelloWorld'
+const camel = strUtils.toCamelCase('hello world'); // 'helloWorld'
+const snake = strUtils.toSnakeCase('Hello World'); // 'hello_world'
+const kebab = strUtils.toKebabCase('Hello World'); // 'hello-world'
+const pascal = strUtils.toPascalCase('hello world'); // 'HelloWorld'
+```
 
+```
 // Cleaning
-const cleaned = strUtils.removeExtraSpaces('hello    world'); // 'hello world'
-const noSpecial = strUtils.removeSpecialChars('test@123!');    // 'test123'
-const truncated = strUtils.truncate('long string', 8);         // 'long st...'
+const cleaned = strUtils.removeExtraSpaces('hello world'); // 'hello world'
+const noSpecial = strUtils.removeSpecialChars('test@123!'); // 'test123'
+const truncated = strUtils.truncate('long string', 8); // 'long st...'
+```
 
+```
 // String info
-const wordCount = strUtils.countWords('hello world test');     // 3
-const charCount = strUtils.countChars('hello world', true);    // 10
-const reversed = strUtils.reverseString('hello');              // 'olleh'
+const wordCount = strUtils.countWords('hello world test'); // 3
+const charCount = strUtils.countChars('hello world', true); // 10
+const reversed = strUtils.reverseString('hello'); // 'olleh'
+```
 
+```
 // Advanced
-const slug = strUtils.generateSlug('Hello World!');           // 'hello-world'
-const random = strUtils.randomString(10);                      // 'aB3dEfG9hI'
-const normalized = strUtils.normalizeUnicode('café');          // 'cafe'
+const slug = strUtils.generateSlug('Hello World!'); // 'hello-world'
+const random = strUtils.randomString(10); // 'aB3dEfG9hI'
+const normalized = strUtils.normalizeUnicode('café'); // 'cafe'
 ```
 
 ## Development
@@ -367,11 +375,13 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ### Steps to Publish
 
 1. **Ensure you have an NPM account**
+
    ```bash
    npm login
    ```
 
 2. **Update version in package.json** (if needed)
+
    ```bash
    npm version patch  # for bug fixes
    npm version minor  # for new features
@@ -379,11 +389,13 @@ Contributions are welcome! Please feel free to submit a Pull Request.
    ```
 
 3. **Run tests**
+
    ```bash
    npm test
    ```
 
 4. **Publish to NPM**
+
    ```bash
    npm publish
    ```
