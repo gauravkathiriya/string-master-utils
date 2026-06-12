@@ -1,6 +1,6 @@
 {
   "name": "string-master-utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A lightweight, zero-dependency TypeScript library for comprehensive string transformations and utilities",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -30,12 +30,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/gauravkathiriya/string-master-utils"
   },
   "bugs": {
-    "url": ""
+    "url": "https://github.com/gauravkathiriya/string-master-utils/issues"
   },
-  "homepage": "",
+  "homepage": "https://www.npmjs.com/package/string-master-utils",
   "files": [
     "dist/**/*",
     "README.md",
