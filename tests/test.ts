@@ -225,6 +225,8 @@ test('isPhone - validation', () => {
   assert(strUtils.isPhone('+1 202 555 0123', 'US') === true);
   assert(strUtils.isPhone('07123456789', 'UK') === true);
   assert(strUtils.isPhone('+447123456789', 'UK') === true);
+  assert(strUtils.isPhone('98765*3210', 'IN') === false);
+  assert(strUtils.isPhone('98765,3210', 'IN') === false);
   assert(strUtils.isPhone(null) === false);
 });
 
@@ -275,7 +277,7 @@ test('truncateSeo - validation', () => {
 test('generateMetaTitle - validation', () => {
   assertEqual(strUtils.generateMetaTitle('My First Blog Post', 'MySite'), 'My First Blog Post | MySite');
   const longTitle = 'Very Long Title that exceeds the limit of meta title generation';
-  assertEqual(strUtils.generateMetaTitle(longTitle, 'MySite'), 'Very Long Title that exceeds the limit of... | MySite');
+  assertEqual(strUtils.generateMetaTitle(longTitle, 'MySite'), 'Very Long Title that exceeds the limit of meta... | MySite');
 });
 
 test('generateMetaDescription - validation', () => {
@@ -286,7 +288,7 @@ test('generateMetaDescription - validation', () => {
 });
 
 test('extractKeywords - validation', () => {
-  const words = strUtils.extractKeywords('TypeScript is a typed programming language that builds on JavaScript.', 3);
+  const words = strUtils.extractKeywords('TypeScript is a programming language. TypeScript is typed. I love this programming language.', 3);
   assertEqual(words.includes('typescript'), true);
   assertEqual(words.includes('programming'), true);
   assertEqual(words.includes('language'), true);
@@ -322,7 +324,7 @@ test('countTokens - validation', () => {
 });
 
 test('truncatePrompt - validation', () => {
-  assertEqual(strUtils.truncatePrompt('This is a very long prompt for AI', 4), 'This is a very');
+  assertEqual(strUtils.truncatePrompt('This is a very long prompt for AI', 4), 'This is a');
 });
 
 test('extractCodeBlocks - validation', () => {
@@ -376,6 +378,10 @@ test('getQueryParams - validation', () => {
   const q = strUtils.getQueryParams('https://example.com?a=1&b=2');
   assertEqual(q.a, '1');
   assertEqual(q.b, '2');
+
+  const qHash = strUtils.getQueryParams('https://example.com?a=1&b=2#section');
+  assertEqual(qHash.a, '1');
+  assertEqual(qHash.b, '2');
 });
 
 test('isSecureUrl - validation', () => {

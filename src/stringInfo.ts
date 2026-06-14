@@ -3,6 +3,8 @@
  * @module stringInfo
  */
 
+import { similarity } from './comparison';
+
 /**
  * Counts the number of words in a string.
  * @param {string} str - The string to analyze.
@@ -127,36 +129,5 @@ export function readingTime(str: string | null | undefined): number {
  * getSimilarity('apple', 'aple') // 0.8
  */
 export function getSimilarity(a: string | null | undefined, b: string | null | undefined): number {
-  const strA = typeof a === 'string' ? a : a === null || a === undefined ? '' : String(a);
-  const strB = typeof b === 'string' ? b : b === null || b === undefined ? '' : String(b);
-
-  if (strA === strB) return 1;
-
-  const arrA = [...strA];
-  const arrB = [...strB];
-
-  const m = arrA.length;
-  const n = arrB.length;
-
-  const maxLen = Math.max(m, n);
-  if (maxLen === 0) return 1;
-
-  let prevRow = Array.from({ length: n + 1 }, (_, i) => i);
-  let currRow = new Array(n + 1);
-
-  for (let i = 1; i <= m; i++) {
-    currRow[0] = i;
-    for (let j = 1; j <= n; j++) {
-      const cost = arrA[i - 1] === arrB[j - 1] ? 0 : 1;
-      currRow[j] = Math.min(
-        currRow[j - 1] + 1,
-        prevRow[j] + 1,
-        prevRow[j - 1] + cost
-      );
-    }
-    prevRow = [...currRow];
-  }
-
-  const dist = prevRow[n];
-  return 1 - dist / maxLen;
+  return similarity(a, b);
 }

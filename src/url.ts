@@ -125,7 +125,8 @@ export function addQueryParams(url: string | null | undefined, params: Record<st
 export function getQueryParams(url: string | null | undefined): Record<string, string> {
   if (typeof url !== 'string') return {};
 
-  const parts = url.split('?');
+  const urlWithoutHash = url.split('#')[0];
+  const parts = urlWithoutHash.split('?');
   if (parts.length < 2) return {};
 
   const searchParams = new URLSearchParams(parts[1]);

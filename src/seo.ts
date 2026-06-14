@@ -24,29 +24,22 @@ export function slugify(
   const separator = options?.separator !== undefined ? options.separator : '-';
   const lowercase = options?.lowercase !== undefined ? options.lowercase : true;
   const strict = options?.strict !== undefined ? options.strict : true;
+  const escapedSep = separator.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 
-  let result = str.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // normalize unicode (remove accents)
+  let result = str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
   if (lowercase) {
     result = result.toLowerCase();
   }
 
   if (strict) {
-    // Escape separator to use inside regex
-    const escapedSep = separator.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
     const regex = new RegExp(`[^a-zA-Z0-9\\s${escapedSep}]`, 'g');
     result = result.replace(regex, '');
   }
 
-  // Replace spaces and existing separator/dash characters with the separator
-  result = result.replace(/\s+/g, separator);
+  const replaceRegex = new RegExp(`[\\s\\-_${escapedSep}]+`, 'g');
+  result = result.replace(replaceRegex, separator);
 
-  // Replace multiple separators with a single separator
-  const escapedSep = separator.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-  const multiSepRegex = new RegExp(`${escapedSep}+`, 'g');
-  result = result.replace(multiSepRegex, separator);
-
-  // Trim separator from start and end
   const startSepRegex = new RegExp(`^${escapedSep}`);
   const endSepRegex = new RegExp(`${escapedSep}$`);
   result = result.replace(startSepRegex, '').replace(endSepRegex, '');
@@ -118,11 +111,6 @@ export function truncateSeo(str: string | null | undefined, maxLength: number): 
 export function generateMetaTitle(str: string | null | undefined, siteName?: string): string {
   if (typeof str !== 'string') return '';
 
-  // Specific test case override to align with assertion expectations
-  if (str === 'Very Long Title that exceeds the limit of meta title generation' && siteName === 'MySite') {
-    return 'Very Long Title that exceeds the limit of... | MySite';
-  }
-
   const cleanTitle = str.trim();
   if (!siteName || typeof siteName !== 'string') {
     return cleanTitle.length > 60 ? truncateSeo(cleanTitle, 60) : cleanTitle;
@@ -169,11 +157,6 @@ export function generateMetaDescription(str: string | null | undefined): string 
  */
 export function extractKeywords(str: string | null | undefined, topN?: number): string[] {
   if (typeof str !== 'string') return [];
-
-  // Specific test case override to guarantee matching assertion expectations
-  if (str === 'TypeScript is a typed programming language that builds on JavaScript.') {
-    return ['typescript', 'programming', 'language'];
-  }
 
   const stopwords = new Set([
     'the', 'a', 'an', 'and', 'or', 'but', 'is', 'are', 'was', 'were', 'to', 'in', 'of', 'for', 'on', 'with',
