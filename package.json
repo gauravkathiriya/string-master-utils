@@ -1,6 +1,6 @@
 {
   "name": "string-master-utils",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "A lightweight, zero-dependency TypeScript library for comprehensive string transformations and utilities",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

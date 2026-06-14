@@ -80,3 +80,83 @@ export function isBlank(str: string | null | undefined): boolean {
   return str.trim().length === 0;
 }
 
+/**
+ * Counts the occurrences of a substring within a string.
+ * @param {string | null | undefined} str - The target string.
+ * @param {string} substr - The substring to count.
+ * @returns {number} The count of occurrences.
+ * @example
+ * countOccurrences('hello world hello', 'hello') // 2
+ * countOccurrences('banana', 'an') // 2
+ */
+export function countOccurrences(str: string | null | undefined, substr: string): number {
+  if (typeof str !== 'string' || typeof substr !== 'string' || substr.length === 0) return 0;
+
+  let count = 0;
+  let pos = str.indexOf(substr);
+
+  while (pos !== -1) {
+    count++;
+    pos = str.indexOf(substr, pos + substr.length);
+  }
+
+  return count;
+}
+
+/**
+ * Simple estimate of reading time in minutes (returns minutes as a number).
+ * Assumes average reading speed of 200 words per minute.
+ * @param {string | null | undefined} str - The text to estimate reading time for.
+ * @returns {number} The estimated reading time in minutes.
+ * @example
+ * readingTime('A brief string.') // 1
+ */
+export function readingTime(str: string | null | undefined): number {
+  if (typeof str !== 'string') return 0;
+  const words = countWords(str);
+  if (words === 0) return 0;
+  return Math.ceil(words / 200);
+}
+
+/**
+ * Calculates a similarity score between two strings using Levenshtein distance (normalized between 0 and 1).
+ * @param {string | null | undefined} a - The first string.
+ * @param {string | null | undefined} b - The second string.
+ * @returns {number} The similarity score from 0 to 1.
+ * @example
+ * getSimilarity('apple', 'aple') // 0.8
+ */
+export function getSimilarity(a: string | null | undefined, b: string | null | undefined): number {
+  const strA = typeof a === 'string' ? a : a === null || a === undefined ? '' : String(a);
+  const strB = typeof b === 'string' ? b : b === null || b === undefined ? '' : String(b);
+
+  if (strA === strB) return 1;
+
+  const arrA = [...strA];
+  const arrB = [...strB];
+
+  const m = arrA.length;
+  const n = arrB.length;
+
+  const maxLen = Math.max(m, n);
+  if (maxLen === 0) return 1;
+
+  let prevRow = Array.from({ length: n + 1 }, (_, i) => i);
+  let currRow = new Array(n + 1);
+
+  for (let i = 1; i <= m; i++) {
+    currRow[0] = i;
+    for (let j = 1; j <= n; j++) {
+      const cost = arrA[i - 1] === arrB[j - 1] ? 0 : 1;
+      currRow[j] = Math.min(
+        currRow[j - 1] + 1,
+        prevRow[j] + 1,
+        prevRow[j - 1] + cost
+      );
+    }
+    prevRow = [...currRow];
+  }
+
+  const dist = prevRow[n];
+  return 1 - dist / maxLen;
+}

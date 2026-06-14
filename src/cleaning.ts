@@ -95,8 +95,115 @@ export function trimAll(str: string | null | undefined): string {
 export function truncate(str: string | null | undefined, limit: number, suffix: string = '...'): string {
   if (!str || typeof str !== 'string') return '';
   if (typeof limit !== 'number' || limit < 0) return str;
-  
+
   if (str.length <= limit) return str;
   return str.slice(0, limit) + suffix;
 }
 
+/**
+ * Capitalizes the first character of a string (Unicode-safe).
+ * @param {string | null | undefined} str - The string to capitalize.
+ * @returns {string} The capitalized string.
+ * @example
+ * capitalize('hello') // 'Hello'
+ * capitalize('world') // 'World'
+ */
+export function capitalize(str: string | null | undefined): string {
+  if (typeof str !== 'string') return '';
+  const chars = [...str];
+  if (chars.length === 0) return '';
+  return chars[0].toUpperCase() + chars.slice(1).join('');
+}
+
+/**
+ * Strips HTML tags from a string.
+ * @param {string | null | undefined} str - The string to strip tags from.
+ * @returns {string} The plain text string.
+ * @example
+ * stripHtml('<p>Hello <strong>World</strong>!</p>') // 'Hello World!'
+ */
+export function stripHtml(str: string | null | undefined): string {
+  if (typeof str !== 'string') return '';
+  return str.replace(/<[^>]*>/g, '');
+}
+
+/**
+ * Escapes HTML characters in a string to prevent XSS.
+ * @param {string | null | undefined} str - The string to escape.
+ * @returns {string} The escaped string.
+ * @example
+ * escapeHtml('<div>Hello & "World"</div>') // '&lt;div&gt;Hello &amp; &quot;World&quot;&lt;/div&gt;'
+ */
+export function escapeHtml(str: string | null | undefined): string {
+  if (typeof str !== 'string') return '';
+  const htmlEscapes: Record<string, string> = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  };
+  return str.replace(/[&<>"']/g, (char) => htmlEscapes[char]);
+}
+
+/**
+ * Unescapes HTML entities in a string.
+ * @param {string | null | undefined} str - The string to unescape.
+ * @returns {string} The unescaped string.
+ * @example
+ * unescapeHtml('&lt;div&gt;Hello &amp; &quot;World&quot;&lt;/div&gt;') // '<div>Hello & "World"</div>'
+ */
+export function unescapeHtml(str: string | null | undefined): string {
+  if (typeof str !== 'string') return '';
+  const htmlUnescapes: Record<string, string> = {
+    '&amp;': '&',
+    '&lt;': '<',
+    '&gt;': '>',
+    '&quot;': '"',
+    '&#39;': "'",
+    '&apos;': "'"
+  };
+  return str.replace(/&(amp|lt|gt|quot|#39|apos);/g, (entity) => htmlUnescapes[entity] || entity);
+}
+
+/**
+ * Replaces all occurrences of a search string with a replacement string.
+ * @param {string | null | undefined} str - The string to perform replacement on.
+ * @param {string} from - The search string to be replaced.
+ * @param {string} to - The replacement string.
+ * @returns {string} The string with all occurrences replaced.
+ * @example
+ * replaceAll('banana', 'a', 'o') // 'bonono'
+ */
+export function replaceAll(str: string | null | undefined, from: string, to: string): string {
+  if (typeof str !== 'string') return '';
+  if (typeof from !== 'string' || typeof to !== 'string') return str;
+  return str.split(from).join(to);
+}
+
+/**
+ * Masks a string except for a designated number of visible characters at the end (Unicode-safe).
+ * @param {string | null | undefined} str - The string to mask.
+ * @param {number} [visibleChars=4] - The number of characters to keep visible.
+ * @param {string} [maskChar='*'] - The character to use for masking.
+ * @returns {string} The masked string.
+ * @example
+ * mask('4111111111111111', 4) // '************1111'
+ * mask('secret', 2, '#') // '####et'
+ */
+export function mask(
+  str: string | null | undefined,
+  visibleChars: number = 4,
+  maskChar: string = '*'
+): string {
+  if (typeof str !== 'string') return '';
+
+  const chars = [...str];
+  const visible = typeof visibleChars === 'number' && visibleChars >= 0 ? visibleChars : 4;
+  const maskC = typeof maskChar === 'string' && maskChar.length > 0 ? maskChar[0] : '*';
+
+  if (chars.length <= visible) return str;
+
+  const maskLength = chars.length - visible;
+  return maskC.repeat(maskLength) + chars.slice(maskLength).join('');
+}
