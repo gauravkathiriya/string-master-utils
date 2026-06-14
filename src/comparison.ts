@@ -32,12 +32,14 @@ export function levenshteinDistance(a: string | null | undefined, b: string | nu
     for (let j = 1; j <= n; j++) {
       const cost = arrA[i - 1] === arrB[j - 1] ? 0 : 1;
       currRow[j] = Math.min(
-        currRow[j - 1] + 1,       // Insertion
-        prevRow[j] + 1,           // Deletion
-        prevRow[j - 1] + cost     // Substitution
+        currRow[j - 1] + 1,
+        prevRow[j] + 1,
+        prevRow[j - 1] + cost
       );
     }
-    prevRow = [...currRow];
+    const temp = prevRow;
+    prevRow = currRow;
+    currRow = temp;
   }
 
   return prevRow[n];

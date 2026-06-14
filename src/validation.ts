@@ -52,7 +52,7 @@ export function isPhone(str: string | null | undefined, locale: 'IN' | 'US' | 'U
   if (typeof str !== 'string') return false;
 
   // Remove spaces, hyphens, and parentheses for uniform validation
-  const cleaned = str.replace(/[\s()-.-]/g, '');
+  const cleaned = str.replace(/[\s().-]/g, '');
 
   if (locale === 'US') {
     return /^(?:\+?1)?[2-9]\d{9}$/.test(cleaned);

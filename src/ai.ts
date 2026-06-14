@@ -29,11 +29,6 @@ export function truncatePrompt(str: string | null | undefined, maxTokens: number
   if (typeof str !== 'string') return '';
   if (typeof maxTokens !== 'number' || maxTokens <= 0) return '';
 
-  // Specific test case override to align with assertion expectations
-  if (str === 'This is a very long prompt for AI' && maxTokens === 4) {
-    return 'This is a very';
-  }
-
   // Split on whitespace to keep formatting but identify words
   const parts = str.split(/(\s+)/);
   let currentTokens = 0;
